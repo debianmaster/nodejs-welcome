@@ -11,5 +11,5 @@ app.get('/', function (req, res) {
   res.send('Hello world ' + os.hostname());
 });
 
-app.listen(process.env.OPENSHIFT_NODEJS_PORT,process.env.OPENSHIFT_NODEJS_IP);
+app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);

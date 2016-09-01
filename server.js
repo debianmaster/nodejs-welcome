@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/healthz', function (req, res) {
+  console.log('health enquiry')
   if(healthy)
    res.send('OK');
   else

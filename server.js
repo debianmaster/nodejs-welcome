@@ -7,7 +7,7 @@ var healthy=true;
 const app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello world ' + os.hostname());
+  res.send('Hello world ' + os.hostname() + '\n');
 });
 
 app.get('/healthz', function (req, res) {

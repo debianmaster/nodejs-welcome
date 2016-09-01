@@ -2,7 +2,7 @@ var express = require('express');
 var os = require("os");
 // Constants
 const PORT = 8080;
-
+var healthy=true;
 // App
 const app = express();
 
@@ -11,12 +11,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/healthz', function (req, res) {
-  res.send('OK');
+  if(healthy)
+   res.send('OK');
+  else
+   res.status(404).send('NOT OK');
 });
 
-app.get('/die', function (req, res) {
-  res.status(404)
-   .send('NOT OK');
+app.get('/cancer', function (req, res) {
+   healthy=false;
+   res.send('DONE');
 });
 
 app.listen(PORT);

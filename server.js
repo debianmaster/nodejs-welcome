@@ -20,7 +20,7 @@ app.get('/healthz', function (req, res) {
 
 app.get('/cancer', function (req, res) {
    healthy=false;
-   res.send('DONE');
+   res.send('Killed ' + os.hostname());
 });
 
 app.listen(PORT);

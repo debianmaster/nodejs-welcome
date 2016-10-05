@@ -2,7 +2,7 @@ var express = require('express');
 var os = require("os");
 // Constants
 const PORT = 8080;
-var healthy=true;
+var healthy=false;
 // App
 const app = express();
 

@@ -8,7 +8,7 @@ var healthy=true;
 
 
 app.get('/', function (req, res) {
-  res.send('Hello world v4 ' + os.hostname() + '\n');
+  res.send('Hello world v1 ' + os.hostname() + '\n');
 });
 
 
@@ -35,5 +35,4 @@ console.log('Running on http://localhost:' + PORT);
 
 process.on('SIGINT', function () {
     console.log('Cleanup.....');
-    process.exit(2);
 });

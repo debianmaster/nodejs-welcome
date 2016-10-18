@@ -4,11 +4,11 @@ const PORT = 8080;
 const app = express();
 
 
-var healthy=false;
+var healthy=true;
 
 
 app.get('/', function (req, res) {
-  res.send('Hello world v2 ' + os.hostname() + '\n');
+  res.send('Hello world v3 ' + os.hostname() + '\n');
 });
 
 

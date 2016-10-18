@@ -31,3 +31,9 @@ app.get('/cancer', function (req, res) {
 
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
+
+
+process.on('SIGINT', function () {
+    console.log('Cleanup.....');
+    process.exit(2);
+});

@@ -35,4 +35,5 @@ console.log('Running on http://localhost:' + PORT);
 
 process.on('SIGINT', function () {
     console.log('Cleanup.....');
+    process.exit();
 });

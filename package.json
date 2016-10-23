@@ -5,9 +5,10 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "./node_modules/nodemon/bin/nodemon.js server.js --debug=5858"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "nodemon": "^1.11.0"
   }
 }

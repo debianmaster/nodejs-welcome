@@ -33,7 +33,7 @@ app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
 
 
-process.on('SIGINT', function () {
+process.on('SIGTERM', function () {
     console.log('Cleanup.....');
     process.exit();
 });

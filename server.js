@@ -40,17 +40,18 @@ process.on('SIGTERM', function () {
 
 
 app.get('/dbtest',function(req,res){
- var mysql      = require('mysql');
- var connection = mysql.createConnection({
-   host     : process.env.mysql_host,
-   user     : process.env.mysql_user,
-   password : process.env.mysql_password,
-   database : process.env.database
- });
- connection.connect();
- connection.query('SELECT * from customer', function(err, rows, fields) {
-   if (err) throw err;
-   console.log('The solution is: ',rows);
-   connection.end();
-   res.json(rows);
- });
+   var mysql      = require('mysql');
+   var connection = mysql.createConnection({
+     host     : process.env.mysql_host,
+     user     : process.env.mysql_user,
+     password : process.env.mysql_password,
+     database : process.env.database
+   });
+   connection.connect();
+   connection.query('SELECT * from customer', function(err, rows, fields) {
+     if (err) throw err;
+     console.log('The solution is: ',rows);
+     connection.end();
+     res.json(rows);
+   });
+});

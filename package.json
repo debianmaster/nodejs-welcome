@@ -5,7 +5,7 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js server.js --debug=5858"
+    "start": "./node_modules/nodemon/bin/nodemon.js server.js --debug=5858 --loglevel=5"
   },
   "dependencies": {
     "express": "^4.13.3",

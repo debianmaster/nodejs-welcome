@@ -28,17 +28,6 @@ app.get('/cancer', function (req, res) {
 });
 
 
-
-app.listen(PORT,'0.0.0.0');
-console.log('Running on http://localhost:' + PORT);
-
-
-process.on('SIGTERM', function () {
-    console.log('Cleanup.....');
-    process.exit();
-});
-
-
 app.get('/dbtest',function(req,res){
    var mysql      = require('mysql');
    var connection = mysql.createConnection({
@@ -54,4 +43,13 @@ app.get('/dbtest',function(req,res){
      connection.end();
      res.json(rows);
    });
+});
+
+app.listen(PORT,'0.0.0.0');
+console.log('Running on http://localhost:' + PORT);
+
+
+process.on('SIGTERM', function () {
+    console.log('Cleanup.....');
+    process.exit();
 });

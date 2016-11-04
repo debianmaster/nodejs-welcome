@@ -8,6 +8,7 @@
     "start": "./node_modules/nodemon/bin/nodemon.js --debug=5858  server.js "
   },
   "dependencies": {
+    "cors": "^2.8.1",
     "express": "^4.13.3",
     "mysql": "^2.11.1",
     "nodemon": "^1.11.0"

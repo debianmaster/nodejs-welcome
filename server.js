@@ -1,8 +1,9 @@
 var express = require('express');
 var os = require("os");
-const PORT = 8080;
+var cors = require('cors');
+const PORT = 3000;
 const app = express();
-
+console.log(process.env)
 
 var healthy=true;
 
@@ -28,7 +29,7 @@ app.get('/cancer', function (req, res) {
 });
 
 
-app.get('/dbtest',function(req,res){
+app.get('/dbtest',cors(),function(req,res){
    var mysql      = require('mysql');
    var connection = mysql.createConnection({
      host     : process.env.mysql_host,

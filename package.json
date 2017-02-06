@@ -5,7 +5,7 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js --debug=5858  server.js "
+    "start": "./zonefetch.sh && ./node_modules/nodemon/bin/nodemon.js --debug=5858  server.js "
   },
   "dependencies": {
     "cors": "^2.8.1",

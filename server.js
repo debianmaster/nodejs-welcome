@@ -3,13 +3,13 @@ var os = require("os");
 var cors = require('cors');
 const PORT = 8080;
 const app = express();
-//console.log(process.env)
+console.log(process.env)
 
 var healthy=true;
 
 
 app.get('/', function (req, res) {
-  res.send('Hello world v1.5 ' + os.hostname() + '\n');
+  res.send('Hello world v1.0 ' + os.hostname() + '\n');
 });
 
 
@@ -49,9 +49,9 @@ app.get('/dbtest',cors(),function(req,res){
 app.listen(PORT,'0.0.0.0');
 console.log('Running on http://localhost:' + PORT);
 
-/*
-process.on('SIGKILL', function () {
+
+process.on('SIGTERM', function () {
     console.log('Cleanup.....');
     process.exit();
 });
-*/
+

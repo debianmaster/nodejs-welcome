@@ -28,22 +28,7 @@ app.get('/cancer', function (req, res) {
    res.send('Killed ' + os.hostname());
 });
 
-app.get('/dbtest',cors(),function(req,res){
-   var mysql      = require('mysql');
-   var connection = mysql.createConnection({
-     host     : process.env.mysql_host,
-     user     : process.env.mysql_user,
-     password : process.env.mysql_password,
-     database : process.env.mysql_database
-   });
-   connection.connect();
-   connection.query('SELECT * from emails', function(err, rows, fields) {
-     if (err) throw err;
-     console.log('The solution is: ',rows);
-     connection.end();
-     res.json(rows);
-   });
-});
+
 
 app.listen(PORT,'0.0.0.0');
 console.log('Running on http://localhost:' + PORT);

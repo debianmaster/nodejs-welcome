@@ -1,4 +1,4 @@
-node('') {
+node('default') {
   stage 'build in development'{
       kubernetes.pod('buildpod').withImage('maven').inside {      
         git 'https://github.com/fabric8io/kubernetes-workflow.git'

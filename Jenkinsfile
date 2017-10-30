@@ -9,7 +9,7 @@ node {
   
     kubernetes.pod('buildpod').withImage('maven').inside {   
       //error 'hello world'
-      git 'https://github.com/debianmaster/spring-sample-app.git'
+      git 'https://github.com/fabric8-quickstarts/node-example.git'
       kubernetes.image().withName("example").build().fromPath(".")
       //sh 'mvn clean package'
       //buildImage email: '9chakri@gmail.com', name: 'tester1', password: '', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'

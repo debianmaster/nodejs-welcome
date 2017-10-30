@@ -1,21 +1,9 @@
 node {
-  stage 'st1'
-    echo 'test1'
-  stage 'st2'
-    echo 'test2'
-  stage 'build in development'
-    // This step should not normally be used in your script. Consult the inline help for details.
-    //buildImage email: '', name: 'teste', password: '', path: 'nexus', rm: false, timeout: 20, username: ''
-  
-    kubernetes.pod('buildpod').withImage('maven').inside {   
-      //error 'hello world'
-      git 'https://github.com/fabric8-quickstarts/node-example.git'
-      if (!fileExists ('Dockerfile')) {
-        writeFile file: 'Dockerfile', text: 'FROM node:5.3-onbuild'
-      }
-      kubernetes.image().withName("example").build().fromPath(".")
-      //sh 'mvn clean package'
-      //buildImage email: '9chakri@gmail.com', name: 'tester1', password: '', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'
-    } 
-    echo 'asdfasdfs'
-}
+    git 'https://github.com/fabric8-quickstarts/node-example.git'
+    if (!fileExists ('Dockerfile')) {
+      writeFile file: 'Dockerfile', text: 'FROM node:5.3-onbuild'
+    }
+    kubernetes.image().withName("example").build().fromPath(".")
+    kubernetes.image().withName("example").tag().inRepository("172.30.101.121:5000/default/example").withTag("1.0")
+    kubernetes.image().withName("172.30.101.121:5000/default/example").push().withTag("1.0").toRegistry()
+} 

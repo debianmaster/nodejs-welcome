@@ -11,7 +11,7 @@ node {
       //error 'hello world'
       git 'https://github.com/debianmaster/spring-sample-app.git'
       sh 'mvn clean package'
-      buildImage email: '9chakri@gmail.com', name: 'tester1', password: 'c0mputer', path: 'docker.io/debianmaster', rm: false, timeout: 20, username: 'debianmaster'
+      buildImage email: '9chakri@gmail.com', name: 'tester1', password: 'c0mputer', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'
     } 
     echo 'asdfasdfs'
 }

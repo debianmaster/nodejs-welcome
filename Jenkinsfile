@@ -5,9 +5,9 @@ node {
     echo 'test2'
   stage 'build in development'
     kubernetes.pod('buildpod').withImage('maven').inside {   
-      error 'hello world'
+      //error 'hello world'
       git 'https://github.com/debianmaster/spring-sample-app.git'
-      sh 'mvn clean install'
+      //sh 'mvn clean install'
     } 
     echo 'asdfasdfs'
 }

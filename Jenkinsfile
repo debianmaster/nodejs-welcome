@@ -10,8 +10,8 @@ node {
     kubernetes.pod('buildpod').withImage('maven').inside {   
       //error 'hello world'
       git 'https://github.com/debianmaster/spring-sample-app.git'
-      sh 'mvn clean package'
-      buildImage email: '9chakri@gmail.com', name: 'tester1', password: 'c0mputer', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'
+      //sh 'mvn clean package'
+      buildImage email: '9chakri@gmail.com', name: 'tester1', password: '', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'
     } 
     echo 'asdfasdfs'
 }

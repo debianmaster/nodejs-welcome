@@ -5,7 +5,7 @@ node {
     echo 'test2'
   stage 'build in development'
     kubernetes.pod('buildpod').withImage('maven').inside {      
-      git 'https://github.com/fabric8io/kubernetes-workflow.git'
+      git 'https://github.com/debianmaster/spring-sample-app.git'
       sh 'mvn clean install'
     } 
 }

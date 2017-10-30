@@ -10,6 +10,9 @@ node {
     kubernetes.pod('buildpod').withImage('maven').inside {   
       //error 'hello world'
       git 'https://github.com/fabric8-quickstarts/node-example.git'
+      if (!fileExists ('Dockerfile')) {
+        writeFile file: 'Dockerfile', text: 'FROM node:5.3-onbuild'
+      }
       kubernetes.image().withName("example").build().fromPath(".")
       //sh 'mvn clean package'
       //buildImage email: '9chakri@gmail.com', name: 'tester1', password: '', path: 'docker.io/debianmaster', rm: false, username: 'debianmaster'

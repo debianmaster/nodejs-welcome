@@ -1,11 +1,38 @@
 node('')  {
-    stage 'Build' {
-        openshift.withCluster( 'https://aws.ck.osecloud.com:8443', 'iyFVwvfSnv1Ho7CWJgpZe_yAiC1hls2Ybkxo2vnoK5g' ) {
+    openshift.withCluster( 'insecure://azure.ck.osecloud.com:8443', 'iyFVwvfSnv1Ho7CWJgpZe_yAiC1hls2Ybkxo2vnoK5g' ) {
+
+        stage('Verify/Create Objects in DEV') {
             openshift.withProject( 'dev' ) {
-                 def created = openshift.newApp( 'https://github.com/debianmaster/nodejs-welcome.git','--name','welcome')
-                 def bc = created.narrow('bc')
+                def bc = openshift.selector( 'bc', [ app:'welcome' ] ).object()
+                if(null == bc) {
+                  def created = openshift.newApp( 'https://github.com/debianmaster/nodejs-welcome.git','--name','welcome');
+                  def appbc = created.narrow('bc')
+                  sleep(3)
+                  appbc.logs('-f')
+                }
+            }
+        }
+        stage('Verify / Create objects in QA') {
+            openshift.withProject( 'dev' ) {
+                def welcome = openshift.selector( 'dc', [ app: 'welcome' ] )
+                def welcomeObjects = welcome.objects( exportable:true )
+                openshift.withProject( 'qa' ) {
+                     openshift.create( welcomeObjects )
+                }
+            }
+        } 
+        stage('Build') {
+            openshift.withProject( 'dev' ) {
+                 def bc = openshift.selector( 'bc', [ app:'welcome' ] )
+                 bc.startBuild()
+                 sleep(3)
                  bc.logs('-f')
             }
         }
+        stage('Relaset to QA') {
+            openshift.withProject( 'qa' ) {
+                 
+            }
+        }       
     }
 }

@@ -1,9 +1,10 @@
-node {
-    git 'https://github.com/fabric8-quickstarts/node-example.git'
-    if (!fileExists ('Dockerfile')) {
-      writeFile file: 'Dockerfile', text: 'FROM node:5.3-onbuild'
+node('')  {
+    openshift.withCluster( 'https://aws.ck.osecloud.com:8443', 'iyFVwvfSnv1Ho7CWJgpZe_yAiC1hls2Ybkxo2vnoK5g' ) {
+        stage 'Build'
+            openshift.withProject( 'dev' ) {
+                 def created = openshift.newApp( 'https://github.com/debianmaster/nodejs-welcome.git','--name','welcome')
+                 def bc = created.narrow('bc')
+                 bc.logs('-f')
+            }
     }
-    kubernetes.image().withName("example").build().fromPath(".")
-    kubernetes.image().withName("example").tag().inRepository("172.30.101.121:5000/default/example").withTag("1.0")
-    kubernetes.image().withName("172.30.101.121:5000/default/example").push().withTag("1.0").toRegistry()
-} 
+}

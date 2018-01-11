@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: welcome-pipeline
+  labels:
+    app: welcome-pipeline
+    name: welcome-pipeline
+    template: welcome-pipeline
+spec:
+  runPolicy: Serial
+  strategy:
+    type: JenkinsPipeline
+    jenkinsPipelineStrategy:
+      jenkinsfile: |-
+        node('') {
+          stage 'Promote from DEV'
+            sh 'oc tag dev/welcome:latest qa/welcome:promoteToQA'
+          stage 'Deploy'
+            openshiftDeploy(namespace:'qa',deploymentConfig: 'welcome')
+          stage 'Test'
+            sh 'echo "testing"'
+          stage 'Promote to Prod'
+            input 'Proceeed ?'
+            sh 'oc tag qa/welcome:latest prod/welcome:promoteToQA'
+        }
+  output:
+  resources:
+  postCommit:

@@ -1,18 +1,24 @@
-node('')  {
-    openshift.withCluster() {
-
-        stage('Verify/Create Objects in DEV') {
-            openshift.withProject( 'dev' ) {
-                def bc = openshift.selector( 'bc', [ app:'welcome' ] ).object()
-                if(null == bc) {
-                  def created = openshift.newApp( 'https://github.com/debianmaster/nodejs-welcome.git','--name','welcome');
-                  def appbc = created.narrow('bc')
-                  sleep(3)
-                  appbc.logs('-f')
-                }
-            }
+pipeline {
+  agent any
+  stages {
+      
+    stage('Verify/Create Objects in DEV') {
+      when {
+        expression {
+          openshift.withCluster() {
+            return !openshift.selector('bc', 'welcome').exists();
+          }
         }
-        stage('Verify / Create objects in QA') {
+      }
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.newApp('https://github.com/debianmaster/nodejs-welcome.git','--name','welcome');
+          }
+        }
+      }
+    }
+    stage('Verify / Create objects in QA') {
             openshift.withProject( 'dev' ) {
                 def welcome = openshift.selector( 'dc', [ app: 'welcome' ] )
                 def welcomeObjects = welcome.objects( exportable:true )
@@ -20,19 +26,6 @@ node('')  {
                      openshift.create( welcomeObjects )
                 }
             }
-        } 
-        stage('Build') {
-            openshift.withProject( 'dev' ) {
-                 def bc = openshift.selector( 'bc', [ app:'welcome' ] )
-                 bc.startBuild()
-                 sleep(3)
-                 bc.logs('-f')
-            }
-        }
-        stage('Relaset to QA') {
-            openshift.withProject( 'qa' ) {
-                 
-            }
-        }       
     }
+  }
 }

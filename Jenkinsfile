@@ -1,5 +1,5 @@
 node('')  {
-    openshift.withCluster( 'insecure://azure.ck.osecloud.com:8443', 'asdfasdfasdfsf' ) {
+    openshift.withCluster() {
 
         stage('Verify/Create Objects in DEV') {
             openshift.withProject( 'dev' ) {

@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: BuildConfig
 metadata:
-  name: welcome-pipeline
+  name: welcome-qa-pipeline
   labels:
-    app: welcome-pipeline
-    name: welcome-pipeline
-    template: welcome-pipeline
+    app: welcome-qa-pipeline
+    name: welcome-qa-pipeline
+    template: welcome-qa-pipeline
 spec:
   runPolicy: Serial
   strategy:

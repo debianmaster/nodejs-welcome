@@ -13,9 +13,9 @@ spec:
     jenkinsPipelineStrategy:
       jenkinsfile: |-
         node('') {
-          stage 'Promote from DEV'
+          stage 'Copy from DEV'
             sh 'oc tag dev/welcome:latest qa/welcome:promoteToQA'
-          stage 'Deploy'
+          stage 'Deploy to QA'
             openshiftDeploy(namespace:'qa',deploymentConfig: 'welcome')
           stage 'Test'
             sh 'echo "testing"'

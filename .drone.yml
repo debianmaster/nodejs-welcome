@@ -1,6 +1,16 @@
 pipeline:
-  build:
-    image: node
-    commands:
-      - npm install
-      - npm test
+  comment-pr:
+    image: gboo/github-pr
+    secrets: [ github_token ]
+    action: comment
+    message: "This PR looks good so far!"
+    when:
+      event: pull_request
+
+  merge-pr:
+    image: gboo/github-pr
+    secrets: [ github_token ]
+    action: rebase
+    message: "Merging this PR"
+    when:
+      event: pull_request

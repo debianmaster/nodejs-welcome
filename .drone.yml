@@ -1,4 +1,8 @@
 pipeline:
+  frontend
+    image: node:10.15.3-alpine
+    commands:
+    - npm install
   comment-pr:
     image: gboo/github-pr
     secrets: [ github_token ]

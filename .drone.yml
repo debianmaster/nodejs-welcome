@@ -11,8 +11,8 @@ pipeline:
     image: snyk/snyk-cli:npm
     commands:
     - echo  ${SNYK_TOKEN}
-    - PROJECT_FOLDER=/drone/src/.git snyk test --json
-    - PROJECT_FOLDER=/drone/src/.git snyk monitor --json
+    - PROJECT_FOLDER=/drone/src/.git snyk test --json | jq .vulnerabilities
+    - PROJECT_FOLDER=/drone/src/.git snyk monitor --json |  jq -r .uri
     secrets: [snyk_token]
     when:
       event: pull_request

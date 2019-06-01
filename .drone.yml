@@ -3,6 +3,14 @@ pipeline:
     image: node:10.15.3-alpine
     commands:
     - npm install
+    
+  scan:
+    image: snyk/snyk-cli:npm
+    commands:
+    - syyk test --json
+    environment:
+      - SNYK_TOKEN=${snyk_token}
+
   comment-pr:
     image: gboo/github-pr
     secrets: [ github_token ]

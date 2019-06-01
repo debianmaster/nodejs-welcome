@@ -12,8 +12,6 @@ pipeline:
     - echo  ${SNYK_TOKEN}
     - snyk test --json
     secrets: [snyk_token]
-    environment:
-      - PROJECT_FOLDER: /drone/src/.git/
 
   comment-pr:
     image: gboo/github-pr

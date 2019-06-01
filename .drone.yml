@@ -9,6 +9,7 @@ pipeline:
   scan:
     image: snyk/snyk-cli:npm
     commands:
+    - pwd
     - export PROJECT_FOLDER=$(pwd)
     - snyk test --json
     environment:

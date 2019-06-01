@@ -1,5 +1,5 @@
 pipeline:
-  frontend
+  frontend:
     image: node:10.15.3-alpine
     commands:
     - npm install

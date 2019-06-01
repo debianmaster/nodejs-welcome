@@ -7,7 +7,7 @@ pipeline:
   scan:
     image: snyk/snyk-cli:npm
     commands:
-    - syyk test --json
+    - snyk test --json
     environment:
       - SNYK_TOKEN=${snyk_token}
 

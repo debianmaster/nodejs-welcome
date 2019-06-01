@@ -3,10 +3,13 @@ pipeline:
     image: node:10.15.3-alpine
     commands:
     - npm install
+    when:
+      event: pull_request
     
   scan:
     image: snyk/snyk-cli:npm
     commands:
+    - export PROJECT_FOLDER=$(pwd)
     - snyk test --json
     environment:
       - SNYK_TOKEN=${snyk_token}

@@ -9,11 +9,11 @@ pipeline:
   scan:
     image: snyk/snyk-cli:npm
     commands:
-    - pwd
-    - export PROJECT_FOLDER=$(pwd)
+    - echo  ${SNYK_TOKEN}
     - snyk test --json
     environment:
       - SNYK_TOKEN=${snyk_token}
+      - PROJECT_FOLDER=/drone/src/.git/
 
   comment-pr:
     image: gboo/github-pr

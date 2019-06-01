@@ -11,9 +11,8 @@ pipeline:
     commands:
     - echo  ${SNYK_TOKEN}
     - snyk test --json
+    secrets: [snyk_token]
     environment:
-      - SNYK_TOKEN: 
-          from_secret: snyk_token
       - PROJECT_FOLDER: /drone/src/.git/
 
   comment-pr:

@@ -12,6 +12,7 @@ pipeline:
     commands:
     - echo  ${SNYK_TOKEN}
     - PROJECT_FOLDER=/drone/src/.git snyk test --json
+    - PROJECT_FOLDER=/drone/src/.git snyk monitor --json
     secrets: [snyk_token]
     when:
       event: pull_request

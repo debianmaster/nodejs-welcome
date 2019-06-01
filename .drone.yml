@@ -10,7 +10,7 @@ pipeline:
     image: snyk/snyk-cli:npm
     commands:
     - echo  ${SNYK_TOKEN}
-    - PROJECT_FOLDER/drone/src/.git/ snyk test --json
+    - PROJECT_FOLDER=/drone/src/.git snyk test --json
     secrets: [snyk_token]
 
   comment-pr:

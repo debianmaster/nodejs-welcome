@@ -12,7 +12,7 @@ blocks:
       jobs:
         - name: Run some code
           commands:
-            - node -p '"evol".split("").reverse().join("")'
+            - npm install
             # Uncomment the following line to pull your code,
             # then proceed by adding your custom commands:
             #- checkout

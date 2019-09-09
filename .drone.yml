@@ -7,8 +7,6 @@ pipeline:
     when:
       event: pull_request
     
-
-
   comment-pr:
     image: gboo/github-pr
     secrets: [ github_token ]

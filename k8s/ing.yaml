@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: simple-fanout-example
+spec:
+  rules:
+  - host: welcome.node1.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: welcome
+          servicePort: 8080

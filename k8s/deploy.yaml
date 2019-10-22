@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: welcome
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: welcome
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: welcome
+  name: welcome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: welcome
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: welcome
+    spec:
+      containers:
+      - image: debianmaster/nodejs-welcome
+        name: welcome
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}

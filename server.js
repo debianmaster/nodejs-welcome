@@ -19,7 +19,6 @@ app.get('/healthz', function (req, res) {
    res.status(404).send('NOT OK');
 });
 
-
 app.get('/cancer', function (req, res) {
    healthy=false;
    res.send('Killed ' + os.hostname());

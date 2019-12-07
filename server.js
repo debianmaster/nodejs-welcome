@@ -11,6 +11,7 @@ app.get('/', function (req, res) {
   res.send('Hello world v.13 '+ os.hostname() + '\n');
 });
 
+
 app.get('/healthz', function (req, res) {
   console.log('health enquiry')
   if(healthy)

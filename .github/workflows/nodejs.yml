@@ -32,5 +32,7 @@ jobs:
           kubectl version
           echo ${{secrets.STG_K8S_KC}}
           mkdir ~/.kube
-          echo ${{secrets.STG_K8S_KC}} > ~/.kube/config
-          kubectl get nodes
+          ls -lrt  ~/.kube/config
+          cd ~/.kube/config
+          pwd 
+          kubectl get nodes --kubeconfig=~/.kube/config

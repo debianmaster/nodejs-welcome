@@ -32,4 +32,4 @@ jobs:
         tag: latest
         registry: docker.io
         username: debianmaster
-        password: 7afc90c3-4f66-4454-a00b-3c4b80ec2155
+        password: ${{secrets.HUB_DEBIANMASTER}}

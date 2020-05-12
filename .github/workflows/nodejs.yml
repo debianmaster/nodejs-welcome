@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -24,9 +24,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
     - run: npm run build --if-present
-    - run: npm test
     - name: Kubernetes CLI - kubectl
       uses: steebchen/kubectl@v1.0.0
     - run: kubectl get po
+    - name: Docker Build & Push
+      uses: mr-smithers-excellent/docker-build-push@v3.1
+      with:
+        image: debianmaster/demo
+        tag: latest
+        registry: docker.io
+        username: debianmaster
+        password: 7afc90c3-4f66-4454-a00b-3c4b80ec2155

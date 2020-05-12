@@ -20,14 +20,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: steebchen/kubectl@master
     - name: deploy to cluster
-      uses: steebchen/kubectl@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: get nodes
-    - run: kubectl get nodes
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      run: kubectl get nodes
       
       

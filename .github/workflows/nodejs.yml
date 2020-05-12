@@ -26,14 +26,7 @@ jobs:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
         args: get nodes
-        
-        
-    - name: deploy to cluster
-      uses: steebchen/kubectl@master
-      shell: bash
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      run:
+    - run:
         kubectl version
         kubectl get nodes
       

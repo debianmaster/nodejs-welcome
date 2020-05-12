@@ -19,7 +19,7 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - uses: debianmaster/kubectl@v0.4
+    - uses: debianmaster/kubectl@v0.5
     - name: deploy to cluster
       run: echo $KUBE_CONFIG_DATA
       env:

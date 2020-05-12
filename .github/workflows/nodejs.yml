@@ -21,11 +21,11 @@ jobs:
     steps:
     - uses: debianmaster/kubectl@v0.4
     - name: deploy to cluster
-      env:
-        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       run: |
         hostname
         kubectl get nodes
         kubectl get pods
-      
+      env:
+        KUBE_CONFIG_DATA: ${{secrets.KUBE_CONFIG_DATA}}
+
       

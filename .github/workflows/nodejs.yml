@@ -23,9 +23,10 @@ jobs:
     - name: deploy to cluster
       run: |
         hostname
+        cat /tmp/config
         kubectl get nodes
         kubectl get pods
       env:
-        KUBE_CONFIG_DATA: ${{secrets.KUBE_CONFIG_DATA}}
+        KUBE_CONFIG_DATA: ${{secrets.DUMMY}}
 
       

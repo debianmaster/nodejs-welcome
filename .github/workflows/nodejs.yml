@@ -20,10 +20,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: debianmaster/kubectl@v0.2
+    - uses: debianmaster/kubectl@v0.3
     - name: deploy to cluster
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-      run: kubectl get nodes
+      run: |
+        kubectl get nodes
+        kubectl get pods
       
       

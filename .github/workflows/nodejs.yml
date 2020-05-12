@@ -21,11 +21,7 @@ jobs:
     steps:
     - uses: debianmaster/kubectl@v0.4
     - name: deploy to cluster
-      run: |
-        hostname
-        cat /tmp/config
-        kubectl get nodes
-        kubectl get pods
+      run: cat /tmp/config
       env:
         KUBE_CONFIG_DATA: ${{secrets.DUMMY}}
 

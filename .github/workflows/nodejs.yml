@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: debianmaster/kubectl@v0.1
+    - uses: debianmaster/kubectl@v0.2
     - name: deploy to cluster
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}

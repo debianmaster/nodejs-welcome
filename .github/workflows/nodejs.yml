@@ -23,5 +23,8 @@ jobs:
     - name: deploy to cluster
       env:
         KUBE_CONFIG_DATA: ${{secrets.KUBE_CONFIG_DATA}}
-      run: kubectl get nodes
+      run: |
+        echo "$KUBE_CONFIG_DATA" | base64 --decode > /tmp/config
+        export KUBECONFIG=/tmp/config
+        kubectl get nodes
       

@@ -30,9 +30,9 @@ jobs:
         command: |
           echo "Run conftest"
           kubectl version
-          echo ${{secrets.STG_K8S_KC}}
           mkdir ~/.kube
-          ls -lrt  ~/.kube/config
-          cd ~/.kube/config
+          echo ${{secrets.STG_K8S_KC}} > ~/.kube/config
+          cat  ~/.kube/config
+          cd ~/.kube/
           pwd 
           kubectl get nodes --kubeconfig=~/.kube/config

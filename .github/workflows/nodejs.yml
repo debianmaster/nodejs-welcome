@@ -23,7 +23,7 @@ jobs:
     - name: Run K8s Deployment
       uses: stefanprodan/kube-tools@v1
       env:
-        KUBECONFIG: ${{STG_K8S_KC}}
+        KUBECONFIG: ${{secrets.STG_K8S_KC}}
       with:
         kubectl: 1.18.0
         kustomize: 3.4.0

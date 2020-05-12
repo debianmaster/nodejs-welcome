@@ -19,14 +19,12 @@ jobs:
         node-version: [10.x]
 
     steps:
-    - uses: actions/checkout@v2
     - uses: debianmaster/kubectl@v0.4
     - name: deploy to cluster
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       run: |
         hostname
-        cat /entrypoint.sh
         kubectl get nodes
         kubectl get pods
       

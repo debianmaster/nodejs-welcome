@@ -26,7 +26,10 @@ jobs:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
         args: get nodes
-    - run:
+    - name: test
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      run:
         kubectl version
         kubectl get nodes
       

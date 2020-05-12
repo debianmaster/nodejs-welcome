@@ -23,5 +23,5 @@ jobs:
     - name: deploy to cluster
       env:
         KUBE_CONFIG_DATA: ${{secrets.KUBE_CONFIG_DATA}}
-
+      run: kubectl get nodes
       

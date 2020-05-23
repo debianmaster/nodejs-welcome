@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - uses: actions/hello-world-docker-action@v1
+    - uses: debianmaster/k3s-action@master
       with:
         version: 'v0.9.1'
     - run: |

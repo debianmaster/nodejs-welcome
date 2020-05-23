@@ -29,3 +29,4 @@ jobs:
     - run: |
         export KUBECONFIG=/tmp/output/kubeconfig-v0.9.1.yaml
         kubectl get nodes
+        kubectl get pods -A

@@ -16,6 +16,7 @@ jobs:
     - uses: debianmaster/set-gitref-env@master
     - name: debug
       run: |
+        echo ${{ toJson(github) }} 
         echo $RELEASE_TAG
   build:
     runs-on: ubuntu-latest

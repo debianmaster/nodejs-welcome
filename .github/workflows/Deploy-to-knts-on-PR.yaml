@@ -1,0 +1,24 @@
+
+name: Deploy to knts on PR
+on:
+  pull_request:
+    types: [opened, synchronize]
+env:
+  CI: false
+jobs:
+  build_and_preview:
+    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
+    runs-on: 
+    # - self-hosted
+    - ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: k8s-master
+        with:
+          version: v1.21.2-k3s1
+          size: SMALL
+          name: mycluster
+          token: ${{ secrets.KNTS_TOKEN }}
+      - run: |
+          kubectl get nodes

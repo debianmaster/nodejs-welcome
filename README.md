@@ -1,3 +1,7 @@
-# nodejs-welcome
-Nodejs application for Demos.   
-![Node.js CI](https://github.com/debianmaster/nodejs-welcome/workflows/Node.js%20CI/badge.svg)
+Dockerfile
+README.md
+azure-pipelines.yml
+k8s
+package-lock.json
+package.json
+server.js

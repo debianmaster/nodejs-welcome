@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: |
+          echo "Building Docker image"
+          podman build -t debianmaster/app .
+
+      - name: Push Docker Image
+        env:
+          PODMAN_PASSWORD: ${{ secrets.PODMAN_PASSWORD }}
+        run: |
+          echo "Pushing Docker image"
+          podman login -u debianmaster -p $PODMAN_PASSWORD
+          podman push debianmaster/app
+
+      - name: Deploy with Helm
+        run: |
+          echo "Deploying with Helm"
+          helm upgrade --install nodejs-welcome welcome/ --values welcome/values.yaml

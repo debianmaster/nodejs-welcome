@@ -1,0 +1,4 @@
+apiVersion: v2
+name: nodejs-welcome
+description: A Helm chart for Node.js Welcome App
+version: 0.1.0

@@ -7,6 +7,20 @@ console.log(process.env)
 
 var healthy=true;
 
+// Greetings data structure with multiple languages
+const greetings = {
+  en: "Hello",
+  es: "Hola", 
+  fr: "Bonjour",
+  de: "Hallo",
+  it: "Ciao",
+  pt: "Olá",
+  ja: "こんにちは",
+  zh: "你好",
+  hi: "नमस्ते",
+  ar: "مرحبا"
+};
+
 app.get('/', function (req, res) {
   res.send('Hello world v.13 '+ os.hostname() + '\n');
 });
@@ -34,4 +48,5 @@ process.on('SIGTERM', function () {
     console.log('Cleanup.....');
     process.exit();
 });
+
 

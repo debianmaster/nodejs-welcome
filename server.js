@@ -7,6 +7,20 @@ console.log(process.env)
 
 var healthy=true;
 
+// Greetings data structure with multiple languages
+const greetings = {
+  en: "Hello",
+  es: "Hola", 
+  fr: "Bonjour",
+  de: "Hallo",
+  it: "Ciao",
+  pt: "Olá",
+  ja: "こんにちは",
+  zh: "你好",
+  hi: "नमस्ते",
+  ar: "مرحبا"
+};
+
 app.get('/', function (req, res) {
   res.send('Hello world v.13 '+ os.hostname() + '\n');
 });
@@ -25,6 +39,18 @@ app.get('/cancer', function (req, res) {
 });
 
 
+app.get('/greetings', function (req, res) {
+  const languages = Object.keys(greetings);
+  const randomLang = languages[Math.floor(Math.random() * languages.length)];
+  res.json({ language: randomLang, greeting: greetings[randomLang] });
+});
+
+app.get('/greetings/:lang', function (req, res) {
+  const requestedLang = req.params.lang.toLowerCase();
+  const greeting = greetings[requestedLang] || greetings.en;
+  const language = greetings[requestedLang] ? requestedLang : 'en';
+  res.json({ language: language, greeting: greeting });
+});
 
 app.listen(PORT,'0.0.0.0');
 console.log('Running on http://localhost:' + PORT);
@@ -34,4 +60,6 @@ process.on('SIGTERM', function () {
     console.log('Cleanup.....');
     process.exit();
 });
+
+
 

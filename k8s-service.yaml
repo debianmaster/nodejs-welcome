@@ -1,0 +1,1 @@
+apiVersion: v1 echo kind: Service echo metadata: echo   name: docker-web-app-service echo spec: echo   type: NodePort echo   ports: echo   - port: 8080 echo     targetPort: 8080 echo     nodePort: 30001 echo   selector: echo     app: docker-web-app
